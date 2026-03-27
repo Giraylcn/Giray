@@ -1,0 +1,5 @@
+{
+  "name": "MyFriend",
+  "description": "A private messaging and calling app where you connect using unique codes and protect conversations with passwords.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
