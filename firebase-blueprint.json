@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Public profile of a user connected to their unique code.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "code", "createdAt"]
+    },
+    "Friend": {
+      "title": "Friend Connection",
+      "description": "Relationship between users.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "name", "addedAt"]
+    },
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "Secure message sent between friends.",
+      "type": "object",
+      "properties": {
+        "fromUid": { "type": "string" },
+        "fromName": { "type": "string" },
+        "message": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fromUid", "fromName", "message", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profile document."
+    },
+    "users/{userId}/friends/{friendId}": {
+      "schema": "Friend",
+      "description": "Friend mappings for a specific user."
+    },
+    "chats/{chatId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Messages within a specific chat. chatId is generated from sorted UIDs."
+    }
+  }
+}
